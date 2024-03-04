@@ -1,6 +1,9 @@
+
+
 const express = require('express');
 const UserController = require('./userController');
 const UserValidator = require('./userValidator');
+
 const router = express.Router();
 
 router.use(express.json());
