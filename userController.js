@@ -1,4 +1,4 @@
-
+const User = require('./userModule');
 function createUserController(req, res) {
     try {
         const userData = req.body; 
@@ -7,7 +7,7 @@ function createUserController(req, res) {
 
         res.send(newUser).status(200);
     } catch (error) {
-        res.send('user not found').status(500);
+        res.send('user not found').status(404);
 
     }
 }
@@ -21,7 +21,7 @@ function putUserController(req, res) {
        res.send(updatedUser).status(200);
 
     } catch (error) {
-      res.send('user not found').status(500);
+      res.send('user not found').status(404);
 
    }
 
