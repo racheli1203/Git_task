@@ -1,23 +1,28 @@
 
+// userValidator.js
 
 class UserValidator {
     static validateUserData(req, res, next) {
         const { name, phone, email } = req.body;
 
-    
-    if (name.length < 2) {
-       res.send('Name must be at least two characters long').status(400);
+        // בדיקה שכל השדות קיימים
+        if (!name || !phone || !email) {
+            return res.status(400).send('All fields are required');
+        }
+
+        // בדיקה שהאימייל אינו מכיל רווחים וכי קיים תו @
+        if (!UserValidator.isValidEmail(email)) {
+            return res.status(400).send('Invalid email format');
+        }
+
+        // אם התקינות עברה בהצלחה, המשך לבצע את הנתיב
+        next();
     }
 
-
-
-    // Check phone number format
-    if (phone.length !== 10 || isNaN(parseInt(phone))) {
-        res.send('Phone number must be 10 digits').status(400);
-
+    static isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     }
 }
-}
-
 
 module.exports = UserValidator;
