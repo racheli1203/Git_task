@@ -1,21 +1,28 @@
 
+
 class UserValidator {
     static validateUserData(req, res, next) {
-        const { name, phone } = req.body;
+        const { name, phone, email } = req.body;
 
-        if (name.length < 2) {
-            return res.status(400).json({ error: 'Name must be at least two characters long' });
+    
+        if (!name || !phone || !email) {
+            return res.status(400).send('All fields are required');
         }
 
-        if (phone.length !== 10 || isNaN(parseInt(phone))) {
-            return res.status(400).json({ error: 'Phone number must be 10 digits' });
+       
+        if (!UserValidator.isValidEmail(email)) {
+            return res.status(400).send('Invalid email format');
         }
 
         next();
     }
 
- 
+    static isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
 }
+
 
 module.exports = UserValidator;
 
