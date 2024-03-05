@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 const port = 8081
 const bodyParser =require('body-parser')
-const userRouter=require('./routing')
+const userRouter=require('./router/routing')
 
 app.use(bodyParser.json())
 app.use( '/users',userRouter)

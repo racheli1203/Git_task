@@ -1,5 +1,5 @@
 
-const User = require('./userModule');
+const User = require('../module/userModule');
 function createUserController(req, res) {
     try {
         const userData = req.body; 
