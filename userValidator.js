@@ -8,10 +8,11 @@ class UserValidator {
             return res.status(400).send('All fields are required');
         }
 
+
         if (!UserValidator.isValidEmail(email)) {
             return res.status(400).send('Invalid email format');
         }
-
+      
         if (name.length < 2) {
             res.send('Name must be at least two characters long').status(400);
         }
@@ -22,6 +23,7 @@ class UserValidator {
         }
         next();
     }
+
     static isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
