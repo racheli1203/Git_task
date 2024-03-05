@@ -1,60 +1,56 @@
-
 const User = require('../module/userModule');
-function createUserController(req, res) {
-    try {
-        const userData = req.body; 
-        const newUser = User.createUser(userData);
 
+async function createUser(req, res) {
+    try {
+        const userData = req.body;
+        const newUser = await User.createUser(userData);
         res.send(newUser).status(200);
     } catch (error) {
-        res.send('user not found').status(404);
+          res.send("error: 'Failed to create user'").status(404)
+      }
+}
 
+async function putUser(req, res) {
+    try {
+        const userId = req.params.userId;
+        const updatedUserData = req.body;
+        const updatedUser = await User.putUser(userId, updatedUserData);
+        if (!updatedUser) {
+              res.send(" error: 'User not found' ").status(404)
+          }
+        res.send(updatedUser).status(200)
+    } catch (error) {
+        res.send("error: 'Failed to update user' ").status(500)
     }
 }
 
-function putUserController(req, res) {
+async function deleteUser(req, res) {
     try {
-        const userId = parseInt(req.params.userId); 
-        const updatedUserData = req.body; ז
-        const updatedUser = User.putUser(userId, updatedUserData);
-
-       res.send(updatedUser).status(200);
-
+        const userId = req.params.userId;
+        await User.delete(userId);
+        res.send("message: 'User deleted successfully'").status(200)
     } catch (error) {
-
-      res.send('user not found').status(404);
-
-   }
-
+        res.send("error: 'Failed to delete user'").status(500)
+    }
 }
 
-function deleteUserController(req, res) {
+async function getUserById(req, res) {
     try {
-      const userId = parseInt(req.params.userId);
-        const deletionResult = User.delete(userId);
-       res.send('Deleted successfully').status(200);
-
-    } catch (error) {
-       res.send('user not deleted').status(500);
-
-  }
-
-}
-function getUserByIdController(req, res) {
-
-    try {
-      const userId = parseInt(req.params.userId);
-        const user = User.getUserById(userId);
+        const userId = req.params.userId;
+        const user = await User.getUserById(userId);
         if (!user) {
-         res.send('user not found').status(404);
-
-        } else {
-        res.send(user).status(200);
-
-        }
-    } catch (error) {
-       res.send('user not found').status(500);
- }
-
+          res.send(" error: 'User not found'").status(404)
+          }
+           res.send(user).status(200)
+        } 
+    catch (error) {
+     res.send("error: 'Failed to fetch user' ").status(500)
+    }
 }
-module.exports={createUserController,putUserController,getUserByIdController,deleteUserController}
+
+module.exports = {
+    createUser,
+    putUser,
+    getUserById,
+    deleteUser
+};
