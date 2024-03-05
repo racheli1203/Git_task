@@ -5,8 +5,8 @@ const port = 8081
 const bodyParser =require('body-parser')
 const userRouter=require('./router/routing')
 
-app.use(bodyParser.json())
-app.use( '/users',userRouter)
+const express = require("express");
+const mongoose = require("mongoose"); 
 
 // // Connect to MongoDB
 // mongoose.connect("mongodb://127.0.0.1:27017/mydatabase", {

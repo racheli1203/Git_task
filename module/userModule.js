@@ -1,5 +1,20 @@
+const mongoose = require('mongoose');
+
+const userSchema = new mongoose.Schema({
+    name: String,
+    phone: String,
+    email:{
+        type:String,
+        unique:true
+    } 
+},
+{timestamps:true}
+);
+
+const UserModel = mongoose.model('User', userSchema);
 
 class User {
+<<<<<<< HEAD
     
     constructor(id, name, phone, email) {
         this.id = id;
@@ -26,30 +41,49 @@ class User {
         const userToUpdate = this.getUserById(userId);
         if (!userToUpdate) {
             throw new Error('User not found');
+=======
+    static async getUserById(userId) {
+        try {
+            const user = await UserModel.findById(userId);
+            return user;
+        } catch (error) {
+            throw new Error('Error fetching user by ID');
+>>>>>>> 521f8b8a96e40f45f9ea4e3b1177ed1417e7c827
         }
-        userToUpdate.id = putUserData.id;
-        userToUpdate.name = putUserData.name;
-        userToUpdate.phone = putUserData.phone;
-        userToUpdate.email = putUserData.email;
-        return userToUpdate;
     }
     
-    
-    static delete(userId) {
-        const userToDelete = this.getUserById(userId);
-    
-        if (!userToDelete) {
-            throw new Error('User not found');
+    static async createUser(userData) {
+        try {
+            const newUser = await UserModel.create(userData);
+            return newUser;
+        } catch (error) {
+            throw new Error('Error creating user');
         }
-        const index = this.users.indexOf(userToDelete);
-        if (index !== -1) {
-            this.users.splice(index, 1);
-        }
-        return `The deletion was successful`;
     }
     
+    static async putUser(userId, putUserData) {
+        try {
+            const updatedUser = await UserModel.findByIdAndUpdate(userId, putUserData, { new: true });
+            if (!updatedUser) {
+                throw new Error('User not found');
+            }
+            return updatedUser;
+        } catch (error) {
+            throw new Error('Error updating user');
+        }
+    }
+    
+    static async delete(userId) {
+        try {
+            const deletionResult = await UserModel.findByIdAndDelete(userId);
+            if (!deletionResult) {
+                throw new Error('User not found');
+            }
+            return 'The deletion was successful';
+        } catch (error) {
+            throw new Error('Error deleting user');
+        }
+    }
 }
+
 module.exports = User;
-
-
-
