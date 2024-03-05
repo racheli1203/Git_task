@@ -1,5 +1,3 @@
-
-
 class UserValidator {
     static validateUserData(req, res, next) {
         const { name, phone, email } = req.body;
@@ -18,6 +16,5 @@ class UserValidator {
     }
 }
 }
-
 
 module.exports = UserValidator;
