@@ -6,9 +6,6 @@ class UserValidator {
        res.send('Name must be at least two characters long').status(400);
     }
 
-
-
-    // Check phone number format
     if (phone.length !== 10 || isNaN(parseInt(phone))) {
         res.send('Phone number must be 10 digits').status(400);
 
