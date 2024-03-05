@@ -1,7 +1,6 @@
 class UserValidator {
     static validateUserData(req, res, next) {
         const { name, phone, email } = req.body;
-
     
     if (name.length < 2) {
        res.send('Name must be at least two characters long').status(400);
