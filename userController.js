@@ -16,7 +16,7 @@ function createUserController(req, res) {
 function putUserController(req, res) {
     try {
         const userId = parseInt(req.params.userId); 
-        const updatedUserData = req.body; 
+        const updatedUserData = req.body; ז
         const updatedUser = User.putUser(userId, updatedUserData);
 
        res.send(updatedUser).status(200);
@@ -50,7 +50,6 @@ function getUserByIdController(req, res) {
          res.send('user not found').status(404);
 
         } else {
-        //    res.status(200).json(user);
         res.send(user).status(200);
 
         }
