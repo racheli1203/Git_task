@@ -5,7 +5,6 @@ function createUserController(req, res) {
         const userData = req.body; 
         const newUser = User.createUser(userData);
 
-
         res.send(newUser).status(200);
     } catch (error) {
         res.send('user not found').status(404);
