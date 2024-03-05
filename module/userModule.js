@@ -14,7 +14,6 @@ const userSchema = new mongoose.Schema({
 const UserModel = mongoose.model('User', userSchema);
 
 class User {
-<<<<<<< HEAD
     
     constructor(id, name, phone, email) {
         this.id = id;
@@ -41,14 +40,6 @@ class User {
         const userToUpdate = this.getUserById(userId);
         if (!userToUpdate) {
             throw new Error('User not found');
-=======
-    static async getUserById(userId) {
-        try {
-            const user = await UserModel.findById(userId);
-            return user;
-        } catch (error) {
-            throw new Error('Error fetching user by ID');
->>>>>>> 521f8b8a96e40f45f9ea4e3b1177ed1417e7c827
         }
     }
     
