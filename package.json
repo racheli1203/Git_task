@@ -11,5 +11,8 @@
     "dev": "nodemon app.js",
     "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
