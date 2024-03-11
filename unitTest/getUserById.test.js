@@ -6,12 +6,7 @@ jest.mock('../models/user_service');
 describe('getUserById function', () => {
   it('should return user when getUserById function is called successfully', async () => {
     const userId = '123';
-    const user = {
-      id: userId,
-      name: 'Test User',
-      email: 'test@example.com',
-      phone: '1234567890'
-    };
+    const user = { id: userId, name: 'Test User' };
     UserModel.getUserById.mockResolvedValue(user);
 
     const req = { params: { userId } };

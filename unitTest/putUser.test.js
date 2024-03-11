@@ -6,11 +6,7 @@ jest.mock('../models/user_service');
 describe('putUser function', () => {
   it('should return updated user when putUser function is called successfully', async () => {
     const userId = '123';
-    const updatedUserData = { 
-      name: 'Updated User', 
-      email: 'updateduser@example.com', 
-      phone: '1234567890' 
-    };
+    const updatedUserData = { name: 'Updated User' };
     const updatedUser = { id: userId, ...updatedUserData };
     UserModel.putUser.mockResolvedValue(updatedUser);
 
@@ -61,3 +57,4 @@ describe('putUser function', () => {
     expect(res.send).toHaveBeenCalledWith("error: 'Failed to update user'");
   });
 });
+  

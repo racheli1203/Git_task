@@ -1,15 +1,12 @@
 const UserModel = require('../models/user_service');
-const testGetAllUsers = require('../controllers/userController').getAllUsers;
+const  testGetAllUsers  = require('../controllers/userController').getAllUsers;
 
 jest.mock('../models/user_service');
 
 describe('getAllUsers function', () => {
     it('should return users when testGetAllUsers function is called successfully', async () => {
-        const mockUsers = [
-            { id: 1, name: 'User 1', email: 'user1@example.com', phone: '1234567890' },
-            { id: 2, name: 'User 2', email: 'user2@example.com', phone: '9876543210' }
-        ];
-         UserModel.getAllUsers.mockResolvedValue(mockUsers);
+        const mockUsers = [{ id: 1, name: 'User 1' }, { id: 2, name: 'User 2' }];
+        UserModel.getAllUsers.mockResolvedValue(mockUsers);
 
         const req = {};
         const res = {
