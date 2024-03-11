@@ -5,7 +5,7 @@ jest.mock('../models/user_service');
 
 describe('createUser function', () => {
   it('should create a new user when createUser function is called successfully', async () => {
-    const userData = { name: 'Test User', email: 'test@example.com' };
+    const userData = { name: 'Test User', email: 'test@example.com',phone:'0527698888' };
     const newUser = { id: 1, ...userData };
     UserModel.createUser.mockResolvedValue(newUser);
     const req = { body: userData };

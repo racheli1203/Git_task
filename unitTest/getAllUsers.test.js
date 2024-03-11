@@ -5,7 +5,8 @@ jest.mock('../models/user_service');
 
 describe('getAllUsers function', () => {
     it('should return users when testGetAllUsers function is called successfully', async () => {
-        const mockUsers = [{ id: 1, name: 'User 1' }, { id: 2, name: 'User 2' }];
+        const mockUsers = [{ id: 1, name: 'User 1' , email: 'test@example.com',phone:'0527698888'}, { id: 2, name: 'User 2', email: 'test2@example.com',phone:'0527698888' }];
+
         UserModel.getAllUsers.mockResolvedValue(mockUsers);
 
         const req = {};
