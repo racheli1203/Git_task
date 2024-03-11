@@ -6,7 +6,7 @@ jest.mock('../models/user_service');
 describe('putUser function', () => {
   it('should return updated user when putUser function is called successfully', async () => {
     const userId = '123';
-    const updatedUserData = { name: 'Updated User' , email: 'test@example.com',phone:'7418529631'};
+    const updatedUserData = { name: 'Updated User' , email: 'test@example.com',phone:'0527698888'};
     const updatedUser = { id: userId, ...updatedUserData };
     UserModel.putUser.mockResolvedValue(updatedUser);
 
@@ -24,7 +24,7 @@ describe('putUser function', () => {
 
   it('should return error message when user is not found', async () => {
     const userId = '123';
-    const updatedUserData = { name: 'Updated User', email: 'test@example.com',phone:'7418529631' };
+    const updatedUserData = { name: 'Updated User', email: 'test@example.com',phone:'0527698888' };
     UserModel.putUser.mockResolvedValue(null);
 
     const req = { params: { userId }, body: updatedUserData };
@@ -41,7 +41,7 @@ describe('putUser function', () => {
 
   it('should return error message when putUser function fails', async () => {
     const userId = '123';
-    const updatedUserData = { name: 'Updated User' , email: 'test@example.com',phone:'7418529631'};
+    const updatedUserData = { name: 'Updated User' , email: 'test@example.com',phone:'0527698888'};
     const mockError = new Error('Failed to update user');
     UserModel.putUser.mockRejectedValue(mockError);
 
