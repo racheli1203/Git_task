@@ -57,3 +57,4 @@ describe('putUser function', () => {
     expect(res.send).toHaveBeenCalledWith("error: 'Failed to update user'");
   });
 });
+  
