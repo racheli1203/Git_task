@@ -7,6 +7,7 @@ describe('putUser function', () => {
   it('should return updated user when putUser function is called successfully', async () => {
     const userId = '123';
     const updatedUserData = { name: 'Updated User' , email: 'test@example.com',phone:'0527698888'};
+
     const updatedUser = { id: userId, ...updatedUserData };
     UserModel.putUser.mockResolvedValue(updatedUser);
 

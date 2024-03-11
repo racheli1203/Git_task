@@ -7,6 +7,7 @@ describe('getUserById function', () => {
   it('should return user when getUserById function is called successfully', async () => {
     const userId = '123';
     const user = { id: userId, name: 'Test User' , email: 'test3@example.com',phone:'0527698888'};
+
     UserModel.getUserById.mockResolvedValue(user);
 
     const req = { params: { userId } };
